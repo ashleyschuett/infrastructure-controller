@@ -1,4 +1,4 @@
-package node
+package cloudnode
 
 import (
 	"github.com/pkg/errors"

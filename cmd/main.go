@@ -58,10 +58,14 @@ func main() {
 	etcdRemovalController := controller.NewEtcdRemovalController(
 		kubeclientset, cloudclientset, kubeInformerFactory)
 
+	nodeRemovalController := controller.NewNodeRemovalController(
+		kubeclientset, cloudclientset, kubeInformerFactory)
+
 	stopCh := make(chan struct{})
 	kubeInformerFactory.Start(stopCh)
 
 	go etcdRemovalController.Run(1, stopCh)
+	go nodeRemovalController.Run(1, stopCh)
 
 	runtime.Goexit()
 }

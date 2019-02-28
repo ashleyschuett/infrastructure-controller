@@ -21,9 +21,9 @@ import (
 	"github.com/containership/csctl/cloud"
 	"github.com/containership/csctl/cloud/provision/types"
 
+	"github.com/containership/infrastructure-controller/pkg/cloudnode"
 	"github.com/containership/infrastructure-controller/pkg/env"
 	"github.com/containership/infrastructure-controller/pkg/etcd"
-	"github.com/containership/infrastructure-controller/pkg/node"
 )
 
 const (
@@ -171,7 +171,7 @@ func (c *EtcdRemovalController) handleErr(err error, key interface{}) error {
 func (c *EtcdRemovalController) enqueueNode(obj interface{}) {
 	var key string
 	var err error
-	if key, err = node.ContainershipNodeIDKeyFunc(obj); err != nil {
+	if key, err = cloudnode.ContainershipNodeIDKeyFunc(obj); err != nil {
 		log.Error(err)
 		return
 	}
